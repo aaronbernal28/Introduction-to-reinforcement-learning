@@ -1,24 +1,30 @@
-# Introduction-to-reinforcement-learning
+# Introduction to Reinforcement Learning
 
-My notes and implementations for the course [Introduction to Reinforcement Learning](https://matthieujonckheere.blogspot.com/p/procesos-markovianos-para-aprendizaje.html) by Matthieu Jonckheere
+Complete implementations and solutions for the course [Introduction to Reinforcement Learning](https://matthieujonckheere.blogspot.com/p/procesos-markovianos-para-aprendizaje.html) by Matthieu Jonckheere.
 
-## Project Structure
+## 🚀 Quick Start
 
-- `src/`: Python implementations of reinforcement learning algorithms
-- `notebooks/`: Jupyter notebooks for experiments and visualizations
-- `data/`: Datasets and data files
-- `models/`: Saved trained models
-- `tests/`: Unit tests for the implementations
-- `requirements.txt`: Python dependencies
+### Installation
+```bash
+pip install -r requirements.txt
+```
 
-## Setup
+## 📁 Project Structure
 
-1. Install Python dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-2. For notebooks, ensure Jupyter is installed and run:
-   ```
-   jupyter notebook
-   ```
+```
+├── src/                          # Core implementations
+│   ├── gridworld.py              # GridWorld environment
+│   ├── mdp_solver.py             # Dynamic programming algorithms
+│   ├── td_learning.py            # TD(0) algorithm
+│   ├── sarsa.py                  # SARSA algorithm
+│   └── q_learning.py             # Q-Learning algorithm
+│
+├── docs/                         # Documentation
+│   └── MDP&TabLearning.md        # Complete solutions documentation
+│
+├── notebooks/                    # Interactive examples
+│   └── report.ipynb              # Practical report notebook
+│
+├── CourseRL_BA2025-9.md          # Assignment description
+└── requirements.txt              # Python dependencies
+```
