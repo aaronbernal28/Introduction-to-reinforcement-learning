@@ -76,10 +76,6 @@ class MDPSolver:
             V_new = np.zeros(self.n_states)
             
             for s in range(self.n_states):
-                if self.env.is_terminal(s):
-                    V_new[s] = 0.0  # Terminal states have value 0
-                    continue
-                
                 v_new = 0
                 for a in range(self.n_actions):
                     # R(s,a) - reward for state-action pair
@@ -87,7 +83,11 @@ class MDPSolver:
                     
                     expected_value = 0
                     for s_prime in range(self.n_states):
-                        P_s_prime = self.env.get_transition_prob(s, a, s_prime)
+                        if self.env.is_terminal(s):
+                            # Terminal state: absorbing (stays in same state)
+                            P_s_prime = 1.0 if s_prime == s else 0.0
+                        else:
+                            P_s_prime = self.env.get_transition_prob(s, a, s_prime)
                         expected_value += P_s_prime * V[s_prime]
                     
                     action_value = R_s_a + self.gamma * expected_value
@@ -128,11 +128,6 @@ class MDPSolver:
             V_new = np.zeros(self.n_states)
             
             for s in range(self.n_states):
-                if self.env.is_terminal(s):
-                    V_new[s] = 0.0
-                    continue
-                
-                # Compute max over actions
                 action_values = np.zeros(self.n_actions)
                 
                 for a in range(self.n_actions):
@@ -140,7 +135,11 @@ class MDPSolver:
                     
                     expected_value = 0
                     for s_prime in range(self.n_states):
-                        P_s_prime = self.env.get_transition_prob(s, a, s_prime)
+                        if self.env.is_terminal(s):
+                            # Terminal state: absorbing (stays in same state)
+                            P_s_prime = 1.0 if s_prime == s else 0.0
+                        else:
+                            P_s_prime = self.env.get_transition_prob(s, a, s_prime)
                         expected_value += P_s_prime * V[s_prime]
                     
                     action_values[a] = R_s_a + self.gamma * expected_value

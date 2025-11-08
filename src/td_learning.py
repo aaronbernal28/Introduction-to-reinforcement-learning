@@ -68,7 +68,11 @@ class TDLearning:
                 if policy_type == 'deterministic':
                     action = policy[state]
                 else:
-                    action = np.random.choice(self.n_actions, p=policy[state])
+                    policy_probs = np.asarray(policy[state]).flatten()
+                    # Ensure probabilities sum to 1
+                    if policy_probs.sum() > 0:
+                        policy_probs = policy_probs / policy_probs.sum()
+                    action = np.random.choice(self.n_actions, p=policy_probs)
                 
                 # Take action
                 next_state, reward, done = self.env.step(action)

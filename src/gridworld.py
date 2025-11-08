@@ -195,6 +195,8 @@ class GridWorld:
             self.current_state = np.random.choice(self.non_terminal)
         else:
             self.current_state = state
+        
+        return self.current_state
     
     def visualize_policy(self, policy: np.ndarray) -> str:
         """
